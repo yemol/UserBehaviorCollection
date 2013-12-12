@@ -1,0 +1,31 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Schema Namespace="sitestatisticsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+  <EntityContainer Name="sitestatisticsModelStoreContainer">
+    <EntitySet Name="StatisticsHeader" EntityType="sitestatisticsModel.Store.StatisticsHeader" store:Type="Tables" Schema="dbo" />
+    <EntitySet Name="StatisticsPage" EntityType="sitestatisticsModel.Store.StatisticsPage" store:Type="Tables" Schema="dbo" />
+  </EntityContainer>
+  <EntityType Name="StatisticsHeader">
+    <Key>
+      <PropertyRef Name="ID" />
+    </Key>
+    <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="userkey" Type="varchar" MaxLength="50" />
+    <Property Name="browser" Type="varchar" MaxLength="50" />
+    <Property Name="os" Type="varchar" MaxLength="50" />
+    <Property Name="ip" Type="varchar" MaxLength="50" />
+    <Property Name="userdefine1" Type="varchar" MaxLength="50" />
+    <Property Name="userdefine2" Type="varchar" MaxLength="50" />
+    <Property Name="CreateDateTime" Type="datetime" />
+  </EntityType>
+  <EntityType Name="StatisticsPage">
+    <Key>
+      <PropertyRef Name="PageID" />
+    </Key>
+    <Property Name="PageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+    <Property Name="PageName" Type="varchar" MaxLength="500" />
+    <Property Name="AccessTime" Type="datetime" />
+    <Property Name="LastActiveTime" Type="datetime" />
+    <Property Name="HeaderID" Type="int" />
+    <Property Name="Actions" Type="text" />
+  </EntityType>
+</Schema>

@@ -1,0 +1,123 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<edmx:Edmx Version="2.0" xmlns:edmx="http://schemas.microsoft.com/ado/2008/10/edmx">
+  <!-- EF Runtime content -->
+  <edmx:Runtime>
+    <!-- SSDL content -->
+    <edmx:StorageModels>
+      <Schema Namespace="sitestatisticsModel.Store" Alias="Self" Provider="System.Data.SqlClient" ProviderManifestToken="2005" xmlns:store="http://schemas.microsoft.com/ado/2007/12/edm/EntityStoreSchemaGenerator" xmlns="http://schemas.microsoft.com/ado/2009/02/edm/ssdl">
+        <EntityContainer Name="sitestatisticsModelStoreContainer">
+          <EntitySet Name="StatisticsHeader" EntityType="sitestatisticsModel.Store.StatisticsHeader" store:Type="Tables" Schema="dbo" />
+          <EntitySet Name="StatisticsPage" EntityType="sitestatisticsModel.Store.StatisticsPage" store:Type="Tables" Schema="dbo" />
+        </EntityContainer>
+        <EntityType Name="StatisticsHeader">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="userkey" Type="varchar" MaxLength="50" />
+          <Property Name="browser" Type="varchar" MaxLength="50" />
+          <Property Name="os" Type="varchar" MaxLength="50" />
+          <Property Name="ip" Type="varchar" MaxLength="50" />
+          <Property Name="userdefine1" Type="varchar" MaxLength="50" />
+          <Property Name="userdefine2" Type="varchar" MaxLength="50" />
+          <Property Name="CreateDateTime" Type="datetime" />
+        </EntityType>
+        <EntityType Name="StatisticsPage">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="int" Nullable="false" StoreGeneratedPattern="Identity" />
+          <Property Name="PageName" Type="varchar" MaxLength="500" />
+          <Property Name="AccessTime" Type="datetime" />
+          <Property Name="LastActiveTime" Type="datetime" />
+          <Property Name="HeaderID" Type="int" />
+          <Property Name="Actions" Type="text" />
+        </EntityType>
+      </Schema>
+    </edmx:StorageModels>
+    <!-- CSDL content -->
+    <edmx:ConceptualModels>
+      <Schema Namespace="sitestatisticsModel" Alias="Self" xmlns:annotation="http://schemas.microsoft.com/ado/2009/02/edm/annotation" xmlns="http://schemas.microsoft.com/ado/2008/09/edm">
+        <EntityContainer Name="sitestatisticsEntities" annotation:LazyLoadingEnabled="true">
+          <EntitySet Name="StatisticsHeaders" EntityType="sitestatisticsModel.StatisticsHeader" />
+          <EntitySet Name="StatisticsPages" EntityType="sitestatisticsModel.StatisticsPage" />
+        </EntityContainer>
+        <EntityType Name="StatisticsHeader">
+          <Key>
+            <PropertyRef Name="ID" />
+          </Key>
+          <Property Name="ID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="userkey" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="browser" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="os" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="ip" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="userdefine1" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="userdefine2" Type="String" MaxLength="50" Unicode="false" FixedLength="false" />
+          <Property Name="CreateDateTime" Type="DateTime" Precision="3" />
+        </EntityType>
+        <EntityType Name="StatisticsPage">
+          <Key>
+            <PropertyRef Name="PageID" />
+          </Key>
+          <Property Name="PageID" Type="Int32" Nullable="false" annotation:StoreGeneratedPattern="Identity" />
+          <Property Name="PageName" Type="String" MaxLength="500" Unicode="false" FixedLength="false" />
+          <Property Name="AccessTime" Type="DateTime" Precision="3" />
+          <Property Name="LastActiveTime" Type="DateTime" Precision="3" />
+          <Property Name="HeaderID" Type="Int32" />
+          <Property Name="Actions" Type="String" MaxLength="Max" Unicode="false" FixedLength="false" />
+        </EntityType>
+      </Schema>
+    </edmx:ConceptualModels>
+    <!-- C-S mapping content -->
+    <edmx:Mappings>
+      <Mapping Space="C-S" xmlns="http://schemas.microsoft.com/ado/2008/09/mapping/cs">
+        <EntityContainerMapping StorageEntityContainer="sitestatisticsModelStoreContainer" CdmEntityContainer="sitestatisticsEntities">
+          <EntitySetMapping Name="StatisticsHeaders">
+            <EntityTypeMapping TypeName="sitestatisticsModel.StatisticsHeader">
+              <MappingFragment StoreEntitySet="StatisticsHeader">
+                <ScalarProperty Name="ID" ColumnName="ID" />
+                <ScalarProperty Name="userkey" ColumnName="userkey" />
+                <ScalarProperty Name="browser" ColumnName="browser" />
+                <ScalarProperty Name="os" ColumnName="os" />
+                <ScalarProperty Name="ip" ColumnName="ip" />
+                <ScalarProperty Name="userdefine1" ColumnName="userdefine1" />
+                <ScalarProperty Name="userdefine2" ColumnName="userdefine2" />
+                <ScalarProperty Name="CreateDateTime" ColumnName="CreateDateTime" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+          <EntitySetMapping Name="StatisticsPages">
+            <EntityTypeMapping TypeName="sitestatisticsModel.StatisticsPage">
+              <MappingFragment StoreEntitySet="StatisticsPage">
+                <ScalarProperty Name="PageID" ColumnName="PageID" />
+                <ScalarProperty Name="PageName" ColumnName="PageName" />
+                <ScalarProperty Name="AccessTime" ColumnName="AccessTime" />
+                <ScalarProperty Name="LastActiveTime" ColumnName="LastActiveTime" />
+                <ScalarProperty Name="HeaderID" ColumnName="HeaderID" />
+                <ScalarProperty Name="Actions" ColumnName="Actions" />
+              </MappingFragment>
+            </EntityTypeMapping>
+          </EntitySetMapping>
+        </EntityContainerMapping>
+      </Mapping>
+    </edmx:Mappings>
+  </edmx:Runtime>
+  <!-- EF Designer content (DO NOT EDIT MANUALLY BELOW HERE) -->
+  <Designer xmlns="http://schemas.microsoft.com/ado/2008/10/edmx">
+    <Connection>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="MetadataArtifactProcessing" Value="EmbedInOutputAssembly" />
+      </DesignerInfoPropertySet>
+    </Connection>
+    <Options>
+      <DesignerInfoPropertySet>
+        <DesignerProperty Name="ValidateOnBuild" Value="true" />
+        <DesignerProperty Name="EnablePluralization" Value="True" />
+        <DesignerProperty Name="IncludeForeignKeysInModel" Value="True" />
+        <DesignerProperty Name="CodeGenerationStrategy" Value="None" />
+      </DesignerInfoPropertySet>
+    </Options>
+    <!-- Diagram content (shape and connector positions) -->
+    <Diagrams></Diagrams>
+  </Designer>
+</edmx:Edmx>

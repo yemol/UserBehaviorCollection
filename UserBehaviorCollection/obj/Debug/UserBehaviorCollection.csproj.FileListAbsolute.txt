@@ -1,0 +1,7 @@
+C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\bin\UserBehaviorCollection.dll
+C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\bin\UserBehaviorCollection.pdb
+C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\bin\EntityFramework.dll
+C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\bin\EntityFramework.xml
+C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.csprojResolveAssemblyReference.cache
+C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.dll
+C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.pdb

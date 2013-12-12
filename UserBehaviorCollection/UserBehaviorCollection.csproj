@@ -43,6 +43,7 @@
     </Reference>
     <Reference Include="Microsoft.CSharp" />
     <Reference Include="System.Data.Entity" />
+    <Reference Include="System.Data.Linq" />
     <Reference Include="System.Runtime.Serialization" />
     <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
@@ -75,46 +76,18 @@
     <Compile Include="Report\Display.aspx.designer.cs">
       <DependentUpon>Display.aspx</DependentUpon>
     </Compile>
-    <Compile Include="statistic.Context.cs">
+    <Compile Include="UserBehavior.designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
-      <DependentUpon>statistic.Context.tt</DependentUpon>
-    </Compile>
-    <Compile Include="statistic.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>statistic.tt</DependentUpon>
-    </Compile>
-    <Compile Include="statistic.Designer.cs">
-      <AutoGen>True</AutoGen>
-      <DesignTime>True</DesignTime>
-      <DependentUpon>statistic.edmx</DependentUpon>
-    </Compile>
-    <Compile Include="StatisticsHeader.cs">
-      <DependentUpon>statistic.tt</DependentUpon>
-    </Compile>
-    <Compile Include="StatisticsPage.cs">
-      <DependentUpon>statistic.tt</DependentUpon>
+      <DependentUpon>UserBehavior.dbml</DependentUpon>
     </Compile>
   </ItemGroup>
   <ItemGroup>
     <Content Include="packages.config" />
-    <EntityDeploy Include="statistic.edmx">
-      <Generator>EntityModelCodeGenerator</Generator>
-      <LastGenOutput>statistic.Designer.cs</LastGenOutput>
-    </EntityDeploy>
-    <Content Include="statistic.Context.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>statistic.edmx</DependentUpon>
-      <LastGenOutput>statistic.Context.cs</LastGenOutput>
-    </Content>
-    <Content Include="statistic.edmx.diagram">
-      <DependentUpon>statistic.edmx</DependentUpon>
-    </Content>
-    <Content Include="statistic.tt">
-      <Generator>TextTemplatingFileGenerator</Generator>
-      <DependentUpon>statistic.edmx</DependentUpon>
-      <LastGenOutput>statistic.cs</LastGenOutput>
+    <Content Include="UserBehavior.dbml">
+      <Generator>MSLinqToSQLGenerator</Generator>
+      <LastGenOutput>UserBehavior.designer.cs</LastGenOutput>
+      <SubType>Designer</SubType>
     </Content>
     <None Include="Web.Debug.config">
       <DependentUpon>Web.config</DependentUpon>
@@ -128,7 +101,13 @@
     <Folder Include="Listener\" />
   </ItemGroup>
   <ItemGroup>
+    <Service Include="{3259AA49-8AA1-44D3-9025-A0B520596A8C}" />
     <Service Include="{508349B6-6B84-4DF5-91F0-309BEEBAD82D}" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="UserBehavior.dbml.layout">
+      <DependentUpon>UserBehavior.dbml</DependentUpon>
+    </None>
   </ItemGroup>
   <PropertyGroup>
     <VisualStudioVersion Condition="'$(VisualStudioVersion)' == ''">10.0</VisualStudioVersion>

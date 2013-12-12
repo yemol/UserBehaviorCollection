@@ -1,0 +1,22 @@
+﻿<?xml version="1.0" encoding="utf-8"?><Database Name="UserBehavior" Class="UserBehaviorDataContext" xmlns="http://schemas.microsoft.com/linqtosql/dbml/2007">
+  <Connection Mode="WebSettings" ConnectionString="Data Source=10.10.73.214;Initial Catalog=UserBehavior;User ID=sa" SettingsObjectName="System.Configuration.ConfigurationManager.ConnectionStrings" SettingsPropertyName="UserBehaviorConnectionString" Provider="System.Data.SqlClient" />
+  <Table Name="dbo.PageVisit" Member="PageVisits">
+    <Type Name="PageVisit">
+      <Column Name="PageIndentity" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="UserIdentity" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" CanBeNull="false" />
+      <Column Name="PagePath" Type="System.String" DbType="VarChar(500) NOT NULL" CanBeNull="false" />
+      <Column Name="StartAccess" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="LastActiveTime" Type="System.DateTime" DbType="DateTime" CanBeNull="true" />
+      <Column Name="Actions" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+  <Table Name="dbo.UserVisit" Member="UserVisits">
+    <Type Name="UserVisit">
+      <Column Name="UserIdentity" Type="System.Guid" DbType="UniqueIdentifier NOT NULL" IsPrimaryKey="true" CanBeNull="false" />
+      <Column Name="browser" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="os" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="ip" Type="System.String" DbType="VarChar(50)" CanBeNull="true" />
+      <Column Name="OtherUserInfo" Type="System.String" DbType="Text" CanBeNull="true" UpdateCheck="Never" />
+    </Type>
+  </Table>
+</Database>

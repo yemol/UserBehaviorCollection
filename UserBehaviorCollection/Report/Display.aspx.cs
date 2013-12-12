@@ -11,7 +11,7 @@ namespace UserBehaviorCollection.Report
 {
     public partial class Display : System.Web.UI.Page
     {
-        private sitestatisticsEntities db = new sitestatisticsEntities();
+        private UserBehaviorDataContext db = new UserBehaviorDataContext();
         protected void Page_Load(object sender, EventArgs e)
         {
             if (!IsPostBack)
@@ -25,7 +25,7 @@ namespace UserBehaviorCollection.Report
 
         private void bindReport()
         {
-            GVReport.DataSource = db.StatisticsHeaders.ToList();
+            GVReport.DataSource = db.PageVisits.ToList();
             GVReport.DataBind();
         }
     }

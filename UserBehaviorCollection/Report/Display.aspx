@@ -28,12 +28,12 @@
                             <input id='<%#Eval("HCID") %>' type="checkbox" name="delSelect" value="<%#Eval("HCID") %>" />
                         </ItemTemplate>
                     </asp:TemplateField>--%>
-                    <asp:TemplateField HeaderText="用户标识">
+                    <asp:TemplateField HeaderText="User Key">
                         <ItemTemplate>
                             <%# Eval("userkey").ToString().Trim()%>
                         </ItemTemplate>
                     </asp:TemplateField>
-                    <asp:TemplateField HeaderText="操作系统">
+                    <asp:TemplateField HeaderText="Operation System">
                         <ItemTemplate>
                             <%# Eval("os").ToString().Trim()%>
                         </ItemTemplate>

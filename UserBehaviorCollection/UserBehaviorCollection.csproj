@@ -73,7 +73,6 @@
     <Content Include="javascript\browser-detect.js" />
     <Content Include="javascript\cookie.js" />
     <Content Include="javascript\event.js" />
-    <Content Include="javascript\index.html" />
     <Content Include="javascript\json.js" />
     <Content Include="javascript\main.js" />
     <Content Include="javascript\store.js" />

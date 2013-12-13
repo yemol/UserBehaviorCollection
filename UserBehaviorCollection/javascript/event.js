@@ -1,17 +1,17 @@
 ﻿var mouseRecord = function (startAccess) {
     this.startAccess = startAccess;
-    this.align = align || 'left';
+    this.align = 'middle';
     this.clicks = 0;
     this.href = window.location.href;
     var that = this;
 
-    var elementRel = {
+    var mouseRecord = {
         windowWidth: function () {
             var a = document.documentElement;
             return self.innerWidth || a && a.clientWidth || document.body.clientWidth
         },
         fixZero: function () {
-            zero = that.align === 'middle' ? -mouseRel.windowWidth() / 2 : 0;
+            zero = that.align === 'middle' ? -mouseRecord.windowWidth() / 2 : 0;
             return zero
         },
         getMosPos: function (e) {
@@ -32,59 +32,90 @@
         getMouseEl: function (x, y) {
             return document.elementFromPoint(x, y);
         },
-        makeMouseData: function (event) {
-            var e = eop.getEvent(event);
-            var mousePos = mouseRel.getMosPos(e);
-            var el = mouseRel.getMouseEl(mousePos.x, mousePos.y);
-            var message = 'You click at X:' + mousePos.x + ',Y:' + mousePos.y;
-            return {
-               // 'className': el.className,
-               // 'nodeName': el.nodeName,
-               // 'parentNode': el.parentNode,
-               // 'nextSibling': el.nextSibling,
-                'html': el.innerHTML,
-                'positionX': mousePos.x + zero,
-                'positionY': mousePos.y,
-                'message': message,
-                'percentageX': mousePos.x / mouseRel.windowWidth()
-            }
-        },
         makeFocusData: function (event)
         {
             var e = eop.getEvent(event);
-            var el = mouseRel.getMouseEl(mousePos.x, mousePos.y);
+            var mousePos = mouseRecord.getMosPos(e);
+            var el = mouseRecord.getMouseEl(mousePos.x, mousePos.y);
             return {
-                'html': el.innerHTML
+                'html': el.outerHTML,
+                'behavior':'focus'
+            }
+        },
+        makeBlurData: function (event)
+        {
+            var e = eop.getEvent(event);
+            var mousePos = mouseRecord.getMosPos(e);
+            var el = mouseRecord.getMouseEl(mousePos.x, mousePos.y);
+            return {
+                'html': el.outerHTML,
+                'behavior': 'blur'
+            }
+        },
+        makeMouseData: function (event)
+        {
+            var e = eop.getEvent(event);
+            var mousePos = mouseRecord.getMosPos(e);
+            var el = mouseRecord.getMouseEl(mousePos.x, mousePos.y);
+            return {
+                'html': el.outerHTML,
+                'behavior': 'mousedown'
             }
         }
     }
     function addPageVisitData(data)
     {
-        var pagesVisitData = store.get('uservisit');
+        var pagesVisitData = getUserVisitData();
         var href = that.href;
         var flag = false;
-        pagesVisitData.forEach(function (element, index, array) {
-            var me = element;
-            if (me.PagePath == href) {
-                me.Actions.push(data);
-                flag = true;
-            }
-            if (!flag)
-                pagesVisitData.push({
-                    PagePath: that.href,
-                    StartAccess: that.startAccess,
-                    Actions: [data]
-                });
-        });
+        if (pagesVisitData.length == 0) {
+            pagesVisitData.push({
+                PagePath: that.href,
+                StartAccess: that.startAccess,
+                Actions: [data]
+            });
+        }
+        else {
+            pagesVisitData.forEach(function (element, index, array) {
+                var me = element;
+                if (me.PagePath == href) {
+                    me.Actions.push(data);
+                    flag = true;
+                }
+                if (!flag) {
+                    pagesVisitData.push({
+                        PagePath: that.href,
+                        StartAccess: that.startAccess,
+                        Actions: [data]
+                    });
+                }
+            });
+        }
+        store.set('uservisit', pagesVisitData);
     }
-    var zero = mouseRel.fixZero();
+    var zero = mouseRecord.fixZero();
     return {
         init: function () {
-            eop.on(document, 'mousedown', function (event) {
-                that.clicks += 1;
-                var data = mouseRel.makeMouseData(event);
-                addPageVisitData(data);
-            })
+            var inputEls =toArray(document.getElementsByTagName('input')),
+                aEls = toArray(document.getElementsByTagName('a'));
+            var totalEls = inputEls.concat(aEls);
+            totalEls.forEach(function (element, index, array) {
+                eop.on(element, 'mousedown', function (event) {
+                    //that.clicks += 1;
+                    var data = mouseRecord.makeMouseData(event);
+                    addPageVisitData(data);
+                })
+                //eop.on(element, 'focus', function (event) {
+                //    //that.clicks += 1;
+                //    var data = mouseRecord.makeFocusData(event);
+                //    addPageVisitData(data);
+                //})
+                //eop.on(element, 'blur', function (event) {
+                //    //that.clicks += 1;
+                //    var data = mouseRecord.makeBlurData(event);
+                //    addPageVisitData(data);
+                //})
+            });
         },
         getClickCount: function () {
             return that.clicks

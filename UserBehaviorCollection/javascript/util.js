@@ -227,9 +227,17 @@ function guid() {
            s4() + '-' + s4() + s4() + s4();
 }
 
+function toArray(arraylike) {
+    var array = new Array(arraylike.length);
+    for (var i = 0, n = arraylike.length; i < n; i++)
+        array[i] = arraylike[i];
+    return array;
+}
+
 function getUserVisitData()
 {
     var pagesVisitData = store.get('uservisit');
     if (!pagesVisitData)
         pagesVisitData = [];
+    return pagesVisitData;
 }

@@ -4,13 +4,14 @@
     if (!userIdentity)
     {
         userIdentity = guid();
-        cookie.setCookie(cn, pageIdentity);
+        cookie.setCookie(cn, userIdentity);
         store.clear();
+        store.set('uservisit', []);
     }
     var url = '';
     var startAccessTime = new Date().format("yyyy-MM-dd h:mm:ss");
     BrowserDetect.init();
-    var c = new mouseRecord('middle');
+    var c = new mouseRecord(startAccessTime);
     c.init();
     window.setInterval(function () {
         var pagesVisitData = getUserVisitData();

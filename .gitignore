@@ -1,3 +1,5 @@
 *.cache
 UserBehaviorCollection\obj\Debug\*.*
 *.suo
+UserBehaviorCollection.dll
+UserBehaviorCollection.pdb

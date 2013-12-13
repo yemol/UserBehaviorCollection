@@ -13,6 +13,11 @@ namespace UserBehaviorCollection.EntityModel
         public List<PageVisitEntity> PageVisit { get; set; }    
     }
 
+    public class ActionsEntity
+    {
+        public List<ActionEntity> Actions { get; set; }
+    }
+
     public class UserVisitEntity
     {
         public Guid UserIdentity { get; set; }

@@ -14,7 +14,7 @@
         ev = ev || window.event;
         var target = ev.target || ev.srcElement;
         var oTr = document.getElementById("tr" + sid);
-        oTr.style.display = oTr.style.display == "none" ? "block" : "none";
+        oTr.style.display = oTr.style.display == "none" ? "table-row" : "none";
         target.innerHTML = oTr.style.display == "none" ? "View" : "Hide";
     }
 
@@ -68,7 +68,6 @@
 
                     <asp:TemplateField HeaderText="View Page Information">
                         <ItemTemplate>
-                            <!---点击用于列表展开，执行JS函数--->
                             <span id='btnShowHidden<%#Eval("UserIdentity") %>' style="cursor: pointer;" onclick="ShowHidden('<%#Eval("UserIdentity") %>',event)">View
                             </span>
                             <tr id='tr<%#Eval("UserIdentity") %>' style="display: none;">
@@ -78,7 +77,6 @@
                                             └
                                         </div>
                                         <div style="position: relative; left: 0px; overflow: auto;">
-                                            <!---绑定内层Gridview--->
                                             <asp:GridView ID="GVPages"
                                                 DataKeyNames="PageIdentity"
                                                 Width="100%" Height="100%" runat="server" AutoGenerateColumns="false"
@@ -117,10 +115,9 @@
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="View Actions">
                                                         <ItemTemplate>
-                                                            <!---点击用于列表展开，执行JS函数--->
                                                             <span id='btnShowHidden<%#Eval("PageIdentity") %>' style="cursor: pointer;" onclick="ShowHidden('<%#Eval("PageIdentity") %>',event)">View</span>
                                                             <tr id='tr<%#Eval("PageIdentity") %>' style="display: none;">
-                                                                <td colspan="5">
+                                                                <td colspan="6">
                                                                     <div>
                                                                         <div style="position: relative; left: 0px; overflow: auto; font-size:12px;">
                                                                           <%# nullDesri(Eval("Actions"),"There is no action!")%>

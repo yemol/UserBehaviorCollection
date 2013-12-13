@@ -8,7 +8,7 @@
         store.clear();
         store.set('uservisit', []);
     }
-    var url = '';
+    var url = 'Listener/ListenerHandler.ashx';
     var startAccessTime = new Date().format("yyyy-MM-dd h:mm:ss");
     BrowserDetect.init();
     var c = new mouseRecord(startAccessTime);

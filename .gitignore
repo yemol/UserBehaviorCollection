@@ -1,3 +1,3 @@
 *.cache
-UserBehaviorCollection\obj\Debug
+UserBehaviorCollection\obj\Debug\*.*
 *.suo

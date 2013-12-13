@@ -111,7 +111,7 @@
                                                     <asp:TemplateField HeaderText="Stay Time">
                                                         <ItemTemplate>
                                                             <%# timeSpan(Eval("StartAccess"),Eval("LastActiveTime"))%>
-                                                        </ItemTemplate>
+                                                        </ItemTemplate> 
                                                     </asp:TemplateField>
                                                     <asp:TemplateField HeaderText="View Actions">
                                                         <ItemTemplate>

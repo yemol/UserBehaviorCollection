@@ -5,3 +5,10 @@ C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorColle
 C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.csprojResolveAssemblyReference.cache
 C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.dll
 C:\Users\Administrator\Documents\GitHub\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.pdb
+D:\work\GitHub\UserBehaviorCollection\UserBehaviorCollection\bin\UserBehaviorCollection.dll
+D:\work\GitHub\UserBehaviorCollection\UserBehaviorCollection\bin\UserBehaviorCollection.pdb
+D:\work\GitHub\UserBehaviorCollection\UserBehaviorCollection\bin\EntityFramework.dll
+D:\work\GitHub\UserBehaviorCollection\UserBehaviorCollection\bin\EntityFramework.xml
+D:\work\GitHub\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.csprojResolveAssemblyReference.cache
+D:\work\GitHub\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.dll
+D:\work\GitHub\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.pdb

@@ -1,0 +1,7 @@
+D:\project\UserBehaviorCollection\UserBehaviorCollection\bin\UserBehaviorCollection.dll
+D:\project\UserBehaviorCollection\UserBehaviorCollection\bin\UserBehaviorCollection.pdb
+D:\project\UserBehaviorCollection\UserBehaviorCollection\bin\EntityFramework.dll
+D:\project\UserBehaviorCollection\UserBehaviorCollection\bin\EntityFramework.xml
+D:\project\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.dll
+D:\project\UserBehaviorCollection\UserBehaviorCollection\obj\Debug\UserBehaviorCollection.pdb
+D:\project\UserBehaviorCollection\UserBehaviorCollection\bin\bin\Newtonsoft.Json.dll

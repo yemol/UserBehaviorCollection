@@ -1,4 +1,3 @@
-*.dll
 *.cache
 UserBehaviorCollection\obj\Debug
 *.suo

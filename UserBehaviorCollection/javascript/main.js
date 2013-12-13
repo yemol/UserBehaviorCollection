@@ -8,7 +8,11 @@ DomReady.ready(function () {
         store.set('uservisit', []);
     }
 
+    //please update this to the location of your host lisenter
     var url = 'http://10.10.73.4:8066/Listener/ListenerHandler.ashx';
+    //user action will be sent to listener every 10s
+    var pulse = 10000;
+
     var startAccessTime = new Date().format("yyyy-MM-dd h:mm:ss");
     var data = getUserVisitData();
     var flag = false;
@@ -70,5 +74,5 @@ DomReady.ready(function () {
                 store.clear();
             }
         });
-    }, 30000);
+    }, pulse);
 });

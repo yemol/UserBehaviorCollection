@@ -35,9 +35,9 @@
             UserVisit: {
                 UserIdentity: userIdentity,
                 Browser: BrowserDetect.browser,
-                OS: BrowserDetect.OS,
-                PagesVisit: pagesVisitData
-            }
+                OS: BrowserDetect.OS
+            },
+            PageVisit: pagesVisitData
         };
         if (pagesVisitData.length != 0)
             pagesVisitData.forEach(function (element, index, array) {
@@ -45,7 +45,7 @@
                 me.LastActiveTime = new Date().format("yyyy-MM-dd h:mm:ss");
             });
         ajax.post(url, {
-            body: 'jsonData=' + JSON.stringify(record).replace(/\"/ig, "\'"),
+            body: 'jsonData=' + JSON.stringify(record),
             success: function (status, response) {
                 store.clear();
             }

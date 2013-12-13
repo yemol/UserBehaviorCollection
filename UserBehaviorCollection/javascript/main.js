@@ -8,8 +8,33 @@
         store.clear();
         store.set('uservisit', []);
     }
-    var url = 'Listener/ListenerHandler.ashx';
+    
+    var url = '/Listener/ListenerHandler.ashx';
     var startAccessTime = new Date().format("yyyy-MM-dd h:mm:ss");
+    var data = getUserVisitData();
+    if (data.length == 0) {
+        data.push({
+            PagePath: window.location.href,
+            StartAccess: startAccessTime,
+            Actions: []
+        });
+    }
+    else {
+        data.forEach(function (element, index, array) {
+            var me = element;
+            if (me.PagePath == window.location.href) {
+                flag = true;
+            }
+            if (!flag) {
+                pagesVisitData.push({
+                    PagePath: window.location.href,
+                    StartAccess: startAccessTime,
+                    Actions: []
+                });
+            }
+        });
+    }
+    store.set('uservisit', data);
     BrowserDetect.init();
     var c = new mouseRecord(startAccessTime);
     c.init();

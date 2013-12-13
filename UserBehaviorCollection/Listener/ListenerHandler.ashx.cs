@@ -18,9 +18,14 @@ namespace UserBehaviorCollection.Listener
         {
             context.Response.ContentType = "text/plain";
             bool isSaveSuccess = true;
+            
             try
             {
-                string json = context.Request.Form["jsonData"].ToString();
+                string json = context.Request["jsonData"].ToString();
+                string s = "\\\"";
+                string t = "#()#";
+                json = json.Replace(s, t);
+                
                 UserBehaviorDataContext userBehaviorDataContext = new UserBehaviorDataContext();
                 UserBehaviorEntity userBehavior = new UserBehaviorEntity();
                 userBehavior = JsonConvert.DeserializeObject<UserBehaviorEntity>(json);

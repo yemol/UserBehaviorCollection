@@ -120,7 +120,7 @@
                                                             <!---点击用于列表展开，执行JS函数--->
                                                             <span id='btnShowHidden<%#Eval("PageIdentity") %>' style="cursor: pointer;" onclick="ShowHidden('<%#Eval("PageIdentity") %>',event)">View</span>
                                                             <tr id='tr<%#Eval("PageIdentity") %>' style="display: none;">
-                                                                <td colspan="5">
+                                                                <td colspan="6">
                                                                     <div>
                                                                         <div style="position: relative; left: 0px; overflow: auto; font-size:12px;">
                                                                           <%# nullDesri(Eval("Actions"),"There is no action!")%>

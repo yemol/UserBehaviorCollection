@@ -1,4 +1,4 @@
-﻿DomReady.ready(function () {
+DomReady.ready(function () {
     var cn = 'userIdentity';
     var userIdentity = cookie.getCookie(cn);
     if (!userIdentity) {
@@ -8,7 +8,7 @@
         store.set('uservisit', []);
     }
 
-    var url = '/Listener/ListenerHandler.ashx';
+    var url = 'http://10.10.73.4:8066/Listener/ListenerHandler.ashx';
     var startAccessTime = new Date().format("yyyy-MM-dd h:mm:ss");
     var data = getUserVisitData();
     var flag = false;
@@ -44,11 +44,31 @@
                 var me = element;
                 me.LastActiveTime = new Date().format("yyyy-MM-dd h:mm:ss");
             });
-        ajax.post(url, {
-            body: 'jsonData=' + JSON.stringify(record),
+        //store.clear();
+        //var clearData = getUserVisitData();
+        //clearData.forEach(function (element, index, array) {
+        //    var me = element;
+        //    me.Actions.length = 0;
+        //});
+        //var i = 0
+        //clearData.forEach(function (element, index, array) {
+        //    if (element.PagePath != window.location.href)
+        //        i++;
+        //});
+        //var saveData = {
+        //    PagePath: clearData[i].PagePath,
+        //    StartAccess: startAccessTime,
+        //    Actions: []
+        //};
+        store.set('uservisit', [{
+            PagePath: window.location.href,
+            StartAccess: startAccessTime,
+            Actions: []
+        }]);
+        ajax.get(url+'?jsonData=' + encodeURIComponent(JSON.stringify(record)), {
             success: function (status, response) {
                 store.clear();
             }
         });
-    }, 10000);
+    }, 30000);
 });

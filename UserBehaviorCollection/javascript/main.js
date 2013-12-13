@@ -32,10 +32,12 @@
     window.setInterval(function () {
         var pagesVisitData = getUserVisitData();
         var record = {
-            UserIdentity: userIdentity,
-            Browser: BrowserDetect.browser,
-            OS: BrowserDetect.OS,
-            PagesVisit: pagesVisitData
+            UserVisit: {
+                UserIdentity: userIdentity,
+                Browser: BrowserDetect.browser,
+                OS: BrowserDetect.OS,
+                PagesVisit: pagesVisitData
+            }
         };
         if (pagesVisitData.length != 0)
             pagesVisitData.forEach(function (element, index, array) {
@@ -43,7 +45,7 @@
                 me.LastActiveTime = new Date().format("yyyy-MM-dd h:mm:ss");
             });
         ajax.post(url, {
-            body: 'jsonData=' + JSON.stringify(record),
+            body: 'jsonData=' + JSON.stringify(record).replace(/\"/ig, "\'"),
             success: function (status, response) {
                 store.clear();
             }

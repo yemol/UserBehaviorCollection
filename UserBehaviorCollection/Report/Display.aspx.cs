@@ -128,8 +128,8 @@ namespace UserBehaviorCollection.Report
             if (beginTime != null && endTime != null)
             {
                 TimeSpan ts = new TimeSpan();
-                ts = (DateTime)endTime - (DateTime)beginTime; //获取时间间隔 
-                int tsSecnond = Convert.ToInt32(ts.TotalSeconds); //转换时间间隔为 秒
+                ts = (DateTime)endTime - (DateTime)beginTime; 
+                int tsSecnond = Convert.ToInt32(ts.TotalSeconds); 
                 int day = tsSecnond / (3600 * 24);
                 int hour = tsSecnond % (3600 * 24) / 3600;
                 int min = tsSecnond % 3600 / 60;

@@ -146,6 +146,7 @@ var ajax = ajax || (function () {
             //  - If not set, the "method" argument must default to "GET"
             //  - We rely on xhr.open method to check validity of its arguments
             xhr.open(method, url, async);
+            xhr.setRequestHeader("Content-type", "application/x-www-form-urlencoded");
 
             // Send the request:
             // The "body" option will be overridden with NULL if method is "GET"

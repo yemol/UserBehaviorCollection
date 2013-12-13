@@ -32,18 +32,16 @@
         getMouseEl: function (x, y) {
             return document.elementFromPoint(x, y);
         },
-        makeFocusData: function (event)
-        {
+        makeFocusData: function (event) {
             var e = eop.getEvent(event);
             var mousePos = mouseRecord.getMosPos(e);
             var el = mouseRecord.getMouseEl(mousePos.x, mousePos.y);
             return {
                 'html': el.outerHTML,
-                'behavior':'focus'
+                'behavior': 'focus'
             }
         },
-        makeBlurData: function (event)
-        {
+        makeBlurData: function (event) {
             var e = eop.getEvent(event);
             var mousePos = mouseRecord.getMosPos(e);
             var el = mouseRecord.getMouseEl(mousePos.x, mousePos.y);
@@ -52,8 +50,7 @@
                 'behavior': 'blur'
             }
         },
-        makeMouseData: function (event)
-        {
+        makeMouseData: function (event) {
             var e = eop.getEvent(event);
             var mousePos = mouseRecord.getMosPos(e);
             var el = mouseRecord.getMouseEl(mousePos.x, mousePos.y);
@@ -63,32 +60,22 @@
             }
         }
     }
-    function addPageVisitData(data)
-    {
+    function addPageVisitData(data) {
         var pagesVisitData = getUserVisitData();
         var href = that.href;
         var flag = false;
-        if (pagesVisitData.length == 0) {
+        pagesVisitData.forEach(function (element, index, array) {
+            var me = element;
+            if (me.PagePath == href) {
+                me.Actions.push(data);
+                flag = true;
+            }
+        });
+        if (!flag || pagesVisitData.length == 0) {
             pagesVisitData.push({
                 PagePath: that.href,
                 StartAccess: that.startAccess,
                 Actions: [data]
-            });
-        }
-        else {
-            pagesVisitData.forEach(function (element, index, array) {
-                var me = element;
-                if (me.PagePath == href) {
-                    me.Actions.push(data);
-                    flag = true;
-                }
-                if (!flag) {
-                    pagesVisitData.push({
-                        PagePath: that.href,
-                        StartAccess: that.startAccess,
-                        Actions: [data]
-                    });
-                }
             });
         }
         store.set('uservisit', pagesVisitData);
@@ -96,7 +83,7 @@
     var zero = mouseRecord.fixZero();
     return {
         init: function () {
-            var inputEls =toArray(document.getElementsByTagName('input')),
+            var inputEls = toArray(document.getElementsByTagName('input')),
                 aEls = toArray(document.getElementsByTagName('a'));
             var totalEls = inputEls.concat(aEls);
             totalEls.forEach(function (element, index, array) {

@@ -1,2 +1,8 @@
-*.dll
 *.cache
+UserBehaviorCollection\obj\Debug\*.*
+*.suo
+UserBehaviorCollection.dll
+*.pdb
+obj
+*.csproj
+*.dll

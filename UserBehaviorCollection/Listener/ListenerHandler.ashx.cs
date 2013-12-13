@@ -32,7 +32,7 @@ namespace UserBehaviorCollection.Listener
                         UserIdentity = userBehavior.UserVisit.UserIdentity,
                         browser = userBehavior.UserVisit.Browser,
                         os = userBehavior.UserVisit.OS,
-                        ip = userBehavior.UserVisit.IP
+                        ip = context.Request.ServerVariables["REMOTE_ADDR"]
                     };
                     userBehaviorDataContext.UserVisits.InsertOnSubmit(userVisitTable);
                 }

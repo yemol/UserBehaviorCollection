@@ -18,14 +18,14 @@ namespace UserBehaviorCollection.Listener
         {
             context.Response.ContentType = "text/plain";
             bool isSaveSuccess = true;
-            
+
             try
             {
                 string json = context.Request["jsonData"].ToString();
                 string s = "\\\"";
                 string t = "#()#";
                 json = json.Replace(s, t);
-                
+
                 UserBehaviorDataContext userBehaviorDataContext = new UserBehaviorDataContext();
                 UserBehaviorEntity userBehavior = new UserBehaviorEntity();
                 userBehavior = JsonConvert.DeserializeObject<UserBehaviorEntity>(json);
@@ -42,20 +42,14 @@ namespace UserBehaviorCollection.Listener
                     userBehaviorDataContext.UserVisits.InsertOnSubmit(userVisitTable);
                 }
                 foreach (PageVisitEntity pageVisitEntity in userBehavior.PageVisit)
-                {                    
-                    string actionArryStr = "[";
-                    foreach (var actions in pageVisitEntity.Actions)
-                    {
-                        actionArryStr += "{\"HTML\":\"" + actions.HTML + "\",\"Behavior\":\"" + actions.Behavior + "\"},";
-                    }
-                    actionArryStr = actionArryStr.EndsWith(",") ? actionArryStr.Substring(0, actionArryStr.Length - 1) : actionArryStr;
-                    actionArryStr += "]";
-
+                {
                     PageVisit page = userBehaviorDataContext.PageVisits.SingleOrDefault(p => (p.UserIdentity == userBehavior.UserVisit.UserIdentity && p.PagePath.ToLower() == pageVisitEntity.PagePath.ToLower()));
                     //insert when don't find the same page with the same user
                     //otherwise update page actions
                     if (page == null)
-                    {                        
+                    {
+                        string actionArryStr = JsonConvert.SerializeObject(pageVisitEntity.Actions).ToString();
+
                         PageVisit pageVistTable = new PageVisit
                         {
                             PageIdentity = Guid.NewGuid(),
@@ -69,40 +63,23 @@ namespace UserBehaviorCollection.Listener
                     }
                     else
                     {
-                        JArray actionArray = null;
-                        JArray actionOldArray = null;
-                        //Deserialize Json
-                        try
-                        {
-                            actionArray = (JArray)JsonConvert.DeserializeObject(actionArryStr);
-                        }
-                        catch
-                        {
-                            actionArray = (JArray)JsonConvert.DeserializeObject("[]");                        
-                        }
+                        List<ActionEntity> actionOldArray = null;
 
                         try
                         {
-                            actionOldArray = (!string.IsNullOrEmpty(page.Actions)) ? (JArray)JsonConvert.DeserializeObject(page.Actions) : (JArray)JsonConvert.DeserializeObject("[]");
+                            actionOldArray = (!string.IsNullOrEmpty(page.Actions)) ?
+                                (List<ActionEntity>)JsonConvert.DeserializeObject<List<ActionEntity>>(page.Actions) : (List<ActionEntity>)JsonConvert.DeserializeObject<List<ActionEntity>>("[]");
                         }
                         catch
                         {
-                            actionOldArray = (JArray)JsonConvert.DeserializeObject("[]");
+                            actionOldArray = (List<ActionEntity>)JsonConvert.DeserializeObject<List<ActionEntity>>("[]");
                         }
 
-                        foreach (var action in actionArray)
-                        {
-                            JObject addAction = new JObject{
-                                new JProperty("HTML",action["HTML"]),
-                                new JProperty("Behavior",action["Behavior"])
-                            };
-                            actionOldArray.Add(addAction);
-                        }                     
-                        //Update 
+                        actionOldArray.AddRange(pageVisitEntity.Actions);
                         page.LastActiveTime = pageVisitEntity.LastActiveTime;
-                        page.Actions = JsonConvert.SerializeObject(actionOldArray).ToString();                        
+                        page.Actions = JsonConvert.SerializeObject(actionOldArray).ToString();
                     }
-                    
+
                 }
 
                 userBehaviorDataContext.SubmitChanges();
